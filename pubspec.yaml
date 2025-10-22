@@ -35,6 +35,12 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
+  
+  # Supabase для работы с базой данных
+  supabase_flutter: ^2.5.0
+  
+  # Mailer для отправки email
+  mailer: ^6.0.1
 
 dev_dependencies:
   flutter_test:

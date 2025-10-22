@@ -1,5 +1,6 @@
 import 'package:cruch/screens/login_screen/widgets/password_widget.dart';
 import 'package:cruch/screens/login_screen/widgets/widget.dart';
+import 'package:cruch/screens/register_screen/register_screen.dart';
 import 'package:cruch/themes/colors.dart';
 import 'package:cruch/themes/input_styles.dart';
 import 'package:flutter/material.dart';
@@ -60,19 +61,23 @@ class  _LoginScreenState  extends State<LoginScreen> {
                   ),
                   const SizedBox(width: 16),
                   Expanded(
-                    child: Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Theme.of(context).colorScheme.onBackground,
-                          foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => const RegisterScreen(),
                           ),
-                          padding: const EdgeInsets.symmetric(vertical: 16),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).colorScheme.onBackground,
+                        foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        child: const Text('РЕГИСТРАЦИЯ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
                       ),
+                      child: const Text('РЕГИСТРАЦИЯ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                     ),
                   ),
                 ],
