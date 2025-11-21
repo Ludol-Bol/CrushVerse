@@ -8,13 +8,13 @@ class AppButtonStyles {
 
   static ButtonStyle get elevated {
     return ElevatedButton.styleFrom(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.buttonBackground,
       foregroundColor: AppColors.onPrimary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
       ),
       padding: padding,
-      textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+      textStyle: AppTextStyles.bodyText1,
     );
   }
 

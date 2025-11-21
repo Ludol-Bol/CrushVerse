@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const Color primary = Color(0xFFB89CB8); // основной акцент
   static const Color primaryVariant = Color(0xFFC7B6CC); // светлый акцент/границы
-  static const Color background = Color(0xFFF5F3F7); // фон
+  static const Color background = Color(0xFFE5E5E5); // фон
   static const Color surface = Color(0xFFFFFFFF); // белый (карточки, поля)
   static const Color error = Color(0xFFB00020);
 
@@ -15,4 +15,7 @@ class AppColors {
   static const Color textPrimary = Color(0xFF6B5A6E); // основной текст
   static const Color textSecondary = Color(0xFFA89BAE); // второстепенный текст
   static const Color divider = Color(0xFFC7B6CC); // разделители, границы
+  static const Color inputBorder = Color(0xFF684F66); // границы полей ввода
+  static const Color inputFocusedBorder = Color(0xFF9B5AAB); // границы полей ввода при фокусе (яркий фиолетовый)
+  static const Color buttonBackground = Color(0xFFE0D4E8); // цвет фона кнопок
 }

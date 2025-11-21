@@ -1,0 +1,61 @@
+{
+  "@@locale": "ru",
+  "appTitle": "Cruch",
+  "email": "Email",
+  "password": "Пароль",
+  "nickname": "Никнейм",
+  "nicknameOrEmail": "Никнейм/Email",
+  "signIn": "Войти",
+  "signUp": "Регистрация",
+  "signOut": "Выйти",
+  "rememberMe": "Запомнить меня",
+  "forgotPassword": "Забыли пароль?",
+  "userAlreadyExists": "Пользователь с таким email уже существует",
+  "checkYourEmail": "Проверьте вашу почту для подтверждения",
+  "successfulLogin": "Успешный вход",
+  "invalidEmailOrPassword": "Неверный email или пароль",
+  "emailNotConfirmed": "Email не подтвержден. Проверьте почту",
+  "invalidToken": "Неверный код подтверждения",
+  "tokenExpired": "Код подтверждения истек. Запросите новый",
+  "passwordTooShort": "Пароль должен быть не менее 6 символов",
+  "registrationDataNotFound": "Данные регистрации не найдены. Пожалуйста, зарегистрируйтесь снова",
+  "registrationDataExpired": "Срок действия данных регистрации истек. Пожалуйста, зарегистрируйтесь снова",
+  "emailSuccessfullyConfirmed": "Email успешно подтвержден. Регистрация завершена",
+  "failedToCompleteRegistration": "Не удалось завершить регистрацию",
+  "verificationCodeSent": "Код подтверждения отправлен на вашу почту",
+  "registrationError": "Ошибка регистрации: {error}",
+  "@registrationError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "loginError": "Ошибка входа: {error}",
+  "@loginError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "verificationError": "Ошибка подтверждения: {error}",
+  "@verificationError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCodeError": "Ошибка отправки кода: {error}",
+  "@resendCodeError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  }
+}
+
+
+

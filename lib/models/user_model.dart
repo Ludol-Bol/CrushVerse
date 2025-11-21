@@ -16,7 +16,7 @@ class UserModel {
     required this.createdAt,
   });
 
-  /// Создание модели из Map (например, из Supabase)
+  /// Создание модели из Map
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       id: map['id'] as String,
@@ -30,7 +30,7 @@ class UserModel {
     );
   }
 
-  /// Преобразование модели в Map (для Supabase)
+  /// Преобразование модели в Map
   Map<String, dynamic> toMap() {
     return {
       'id': id,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cruch/themes/text_styles.dart';
+import 'package:cruch/themes/colors.dart';
+import 'package:cruch/l10n/app_localizations.dart';
 
 class PasswordWidget extends StatefulWidget{
   const PasswordWidget({super.key});
@@ -18,19 +20,21 @@ class _PasswordWidgetState extends State<PasswordWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Пароль',
-          style: AppTextStyles.bodyText1,
-        ),
+        Text(l10n.password, style: AppTextStyles.bodyText1),
         TextField(
           obscureText: _obscureText,
+          style: AppTextStyles.inputText,
           decoration: InputDecoration(
-            prefixIcon: const Icon(Icons.lock_outline),
+            prefixIcon: const Icon(Icons.lock_outline, color: AppColors.inputBorder),
             suffixIcon: IconButton(
-              icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
+              icon: Icon(
+                _obscureText ? Icons.visibility_off : Icons.visibility,
+                color: AppColors.inputBorder,
+              ),
               onPressed: _toggleVisibility,
             ),
           ),

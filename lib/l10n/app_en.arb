@@ -1,0 +1,134 @@
+{
+  "@@locale": "en",
+  "appTitle": "Cruch",
+  "@appTitle": {
+    "description": "Application title"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Email label"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Password label"
+  },
+  "nickname": "Nickname",
+  "@nickname": {
+    "description": "Nickname label"
+  },
+  "nicknameOrEmail": "Nickname/Email",
+  "@nicknameOrEmail": {
+    "description": "Nickname or Email label for login field"
+  },
+  "signIn": "Sign In",
+  "@signIn": {
+    "description": "Sign in button"
+  },
+  "signUp": "Sign Up",
+  "@signUp": {
+    "description": "Sign up button"
+  },
+  "signOut": "Sign Out",
+  "@signOut": {
+    "description": "Sign out button"
+  },
+  "rememberMe": "Remember me",
+  "@rememberMe": {
+    "description": "Remember me checkbox label"
+  },
+  "forgotPassword": "Forgot password?",
+  "@forgotPassword": {
+    "description": "Forgot password link"
+  },
+  "userAlreadyExists": "User with this email already exists",
+  "@userAlreadyExists": {
+    "description": "Error message when user already exists"
+  },
+  "checkYourEmail": "Check your email for confirmation",
+  "@checkYourEmail": {
+    "description": "Message to check email for confirmation"
+  },
+  "successfulLogin": "Successful login",
+  "@successfulLogin": {
+    "description": "Success message after login"
+  },
+  "invalidEmailOrPassword": "Invalid email or password",
+  "@invalidEmailOrPassword": {
+    "description": "Error message for invalid credentials"
+  },
+  "emailNotConfirmed": "Email not confirmed. Check your email",
+  "@emailNotConfirmed": {
+    "description": "Error message when email is not confirmed"
+  },
+  "invalidToken": "Invalid confirmation code",
+  "@invalidToken": {
+    "description": "Error message for invalid token"
+  },
+  "tokenExpired": "Confirmation code has expired. Request a new one",
+  "@tokenExpired": {
+    "description": "Error message when token expired"
+  },
+  "passwordTooShort": "Password must be at least 6 characters",
+  "@passwordTooShort": {
+    "description": "Error message for short password"
+  },
+  "registrationDataNotFound": "Registration data not found. Please register again",
+  "@registrationDataNotFound": {
+    "description": "Error message when registration data is not found"
+  },
+  "registrationDataExpired": "Registration data has expired. Please register again",
+  "@registrationDataExpired": {
+    "description": "Error message when registration data expired"
+  },
+  "emailSuccessfullyConfirmed": "Email successfully confirmed. Registration completed",
+  "@emailSuccessfullyConfirmed": {
+    "description": "Success message after email confirmation"
+  },
+  "failedToCompleteRegistration": "Failed to complete registration",
+  "@failedToCompleteRegistration": {
+    "description": "Error message when registration fails"
+  },
+  "verificationCodeSent": "Verification code sent to your email",
+  "@verificationCodeSent": {
+    "description": "Message when verification code is sent"
+  },
+  "registrationError": "Registration error: {error}",
+  "@registrationError": {
+    "description": "General registration error",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "loginError": "Login error: {error}",
+  "@loginError": {
+    "description": "General login error",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "verificationError": "Verification error: {error}",
+  "@verificationError": {
+    "description": "General verification error",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCodeError": "Error sending code: {error}",
+  "@resendCodeError": {
+    "description": "Error when resending code",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  }
+}
+
+
+

@@ -242,6 +242,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
         style: const TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.bold,
+          color: AppColors.inputBorder,
         ),
         decoration: InputDecoration(
           counterText: '',
@@ -249,15 +250,15 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
           fillColor: Colors.white,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: AppColors.divider),
+            borderSide: const BorderSide(color: AppColors.inputBorder, width: 2),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: AppColors.divider),
+            borderSide: const BorderSide(color: AppColors.inputBorder, width: 2),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: AppColors.primary, width: 2),
+            borderSide: const BorderSide(color: AppColors.inputBorder, width: 2),
           ),
         ),
         inputFormatters: [

@@ -40,7 +40,8 @@ class AppTextStyles {
 
   static const TextStyle bodyText1 = TextStyle(
     fontSize: 16,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Roboto',
     color: AppColors.textPrimary,
   );
 
@@ -48,6 +49,13 @@ class AppTextStyles {
     fontSize: 14,
     fontWeight: FontWeight.w400,
     color: AppColors.textPrimary,
+  );
+
+  static const TextStyle bodyText3 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Roboto',
+    color: AppColors.inputBorder,
   );
 
   static const TextStyle caption = TextStyle(
@@ -59,5 +67,11 @@ class AppTextStyles {
   static const TextStyle inputLabel = TextStyle(
     fontSize: 16,
     color: AppColors.textPrimary,
+  );
+
+  static const TextStyle inputText = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: AppColors.inputBorder,
   );
 }

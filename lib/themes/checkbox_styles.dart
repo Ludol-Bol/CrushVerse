@@ -8,12 +8,11 @@ class AppCheckboxStyles {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius),
         ),
-        fillColor: MaterialStateProperty.resolveWith<Color>((states) {
-          if (states.contains(MaterialState.selected)) {
-            return AppColors.primary;
-          }
-          return AppColors.divider;
+        fillColor: WidgetStateProperty.resolveWith<Color>((states) {
+          return AppColors.background;
         }),
-        checkColor: MaterialStateProperty.all(AppColors.onPrimary),
+        checkColor: WidgetStateProperty.all(AppColors.inputBorder),
+        side: const BorderSide(color: AppColors.inputBorder, width: 2),
+        overlayColor: WidgetStateProperty.all(Colors.transparent),
       );
 } 

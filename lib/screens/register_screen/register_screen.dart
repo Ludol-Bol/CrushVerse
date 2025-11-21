@@ -40,19 +40,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
       suffixIcon: suffixIcon,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppInputStyles.borderRadius),
-        borderSide: const BorderSide(color: AppColors.divider),
+        borderSide: const BorderSide(color: AppColors.inputBorder, width: 2),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppInputStyles.borderRadius),
-        borderSide: const BorderSide(color: AppColors.divider),
+        borderSide: const BorderSide(color: AppColors.inputBorder, width: 2),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppInputStyles.borderRadius),
-        borderSide: const BorderSide(color: AppColors.primary, width: 2),
+        borderSide: const BorderSide(color: AppColors.inputBorder, width: 2),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppInputStyles.borderRadius),
-        borderSide: const BorderSide(color: AppColors.error),
+        borderSide: const BorderSide(color: AppColors.error, width: 2),
       ),
       contentPadding: AppInputStyles.contentPadding,
     );
@@ -144,6 +144,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 // Никнейм
                 TextFormField(
                   controller: _nicknameController,
+                  style: AppTextStyles.inputText,
                   decoration: _buildInputDecoration('Никнейм', prefixIcon: const Icon(Icons.person_outline)),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -164,6 +165,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 TextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
+                  style: AppTextStyles.inputText,
                   decoration: _buildInputDecoration('Email', prefixIcon: const Icon(Icons.email_outlined)),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -181,6 +183,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 TextFormField(
                   controller: _passwordController,
                   obscureText: _obscurePassword,
+                  style: AppTextStyles.inputText,
                   decoration: _buildInputDecoration(
                     'Пароль',
                     prefixIcon: const Icon(Icons.lock_outline),
@@ -211,6 +214,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 TextFormField(
                   controller: _confirmPasswordController,
                   obscureText: _obscureConfirmPassword,
+                  style: AppTextStyles.inputText,
                   decoration: _buildInputDecoration(
                     'Подтвердите пароль',
                     prefixIcon: const Icon(Icons.lock_outline),

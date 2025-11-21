@@ -3,11 +3,11 @@ import 'package:cruch/screens/login_screen/widgets/widget.dart';
 import 'package:cruch/screens/register_screen/register_screen.dart';
 import 'package:cruch/themes/colors.dart';
 import 'package:cruch/themes/input_styles.dart';
+import 'package:cruch/themes/text_styles.dart';
+import 'package:cruch/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/remember_me_widget.dart';
-
-
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,28 +15,34 @@ class LoginScreen extends StatefulWidget {
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
-class  _LoginScreenState  extends State<LoginScreen> {
 
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: 24),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top - MediaQuery.of(context).padding.bottom,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+              const SizedBox(height: 8),
               ClipRRect(
                 borderRadius: BorderRadius.circular(16),
-                child: Image.asset(
-                  'assets/image/main_screen_img.png',
+                child: Image.asset('assets/image/main_screen_img.png',
                   fit: BoxFit.cover,
-                  height: 220,
+                  height: 330,
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 40),
               const LoginOrEmailWidget(),
               const SizedBox(height: 12),
               const PasswordWidget(),
@@ -49,14 +55,14 @@ class  _LoginScreenState  extends State<LoginScreen> {
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        backgroundColor: AppColors.buttonBackground,
                         foregroundColor: Theme.of(context).colorScheme.onPrimary,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
                         padding: const EdgeInsets.symmetric(vertical: 16),
                       ),
-                      child: const Text('ВХОД', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                      child: Text(l10n.signIn.toUpperCase(), style: AppTextStyles.bodyText1),
                     ),
                   ),
                   const SizedBox(width: 16),
@@ -70,52 +76,59 @@ class  _LoginScreenState  extends State<LoginScreen> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.onBackground,
-                        foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                        backgroundColor: AppColors.buttonBackground,
+                        foregroundColor:
+                            Theme.of(context).colorScheme.onPrimary,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
                         padding: const EdgeInsets.symmetric(vertical: 16),
                       ),
-                      child: const Text('РЕГИСТРАЦИЯ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                      child: Text(l10n.signUp.toUpperCase(),
+                          style: AppTextStyles.bodyText1),
                     ),
                   ),
                 ],
               ),
               const SizedBox(height: 32),
-              Row(
+           ///to do: необходимо сделать после создания основного функционала
+           /*   Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    icon: Image.asset('assets/image/icons-vk.png', width: 50, height: 50),
+                    icon: Image.asset('assets/image/icons-vk.png',
+                        width: 50, height: 50),
                     iconSize: 50,
                     padding: const EdgeInsets.all(2),
-                    constraints: const BoxConstraints(minWidth: 28, minHeight: 50),
+                    constraints:
+                        const BoxConstraints(minWidth: 28, minHeight: 50),
                     onPressed: () {},
                   ),
                   const SizedBox(width: 8),
-                  IconButton(
-                    icon: Image.asset('assets/image/icons-google.png', width: 46, height: 46),
+                  IconButton(icon: Image.asset('assets/image/icons-google.png', width: 46, height: 46),
                     iconSize: 50,
                     padding: const EdgeInsets.all(2),
-                    constraints: const BoxConstraints(minWidth: 28, minHeight: 28),
+                    constraints:
+                        const BoxConstraints(minWidth: 28, minHeight: 28),
                     onPressed: () {},
                   ),
                 ],
+              ),*/
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
     );
   }
-
 }
-
+///to do: сделать после того как основной функционал будет реализован
 class _SocialButton extends StatelessWidget {
   final String asset;
 
   final VoidCallback onTap;
+
   const _SocialButton({required this.asset, required this.onTap});
 
   @override

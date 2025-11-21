@@ -1,8 +1,6 @@
-import 'package:cruch/services/supabase_service.dart';
 import 'package:cruch/services/email_service.dart';
 import 'package:cruch/repositories/user_repository.dart';
 import 'package:cruch/models/user_model.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// Сервис для аутентификации пользователей
 class AuthService {
@@ -60,12 +58,6 @@ class AuthService {
         message: 'Проверьте вашу почту для подтверждения',
         needsEmailConfirmation: true,
       );
-    } on AuthException catch (e) {
-      print('AuthService: AuthException: ${e.message}');
-      return AuthResult(
-        success: false,
-        message: _getAuthErrorMessage(e.message),
-      );
     } catch (e) {
       print('AuthService: Общая ошибка: $e');
       return AuthResult(
@@ -80,35 +72,11 @@ class AuthService {
     required String email,
     required String password,
   }) async {
-    try {
-      final response = await SupabaseService.client.auth.signInWithPassword(
-        email: email,
-        password: password,
-      );
-
-      if (response.user != null) {
-        return AuthResult(
-          success: true,
-          message: 'Успешный вход',
-          user: response.user,
-        );
-      }
-
-      return AuthResult(
-        success: false,
-        message: 'Неверный email или пароль',
-      );
-    } on AuthException catch (e) {
-      return AuthResult(
-        success: false,
-        message: _getAuthErrorMessage(e.message),
-      );
-    } catch (e) {
-      return AuthResult(
-        success: false,
-        message: 'Ошибка входа: ${e.toString()}',
-      );
-    }
+    // TODO: Реализовать вход без Supabase
+    return AuthResult(
+      success: false,
+      message: 'Функция входа не реализована',
+    );
   }
 
   /// Подтверждение email с помощью OTP кода
@@ -157,38 +125,17 @@ class AuthService {
         );
       }
       
-      // Создаем пользователя в Supabase после подтверждения email
-      print('AuthService: Создаем пользователя в Supabase после подтверждения email');
-      final response = await SupabaseService.client.auth.signUp(
-        email: pendingUser.email,
-        password: pendingUser.password,
-        data: {
-          'nickname': pendingUser.nickname,
-        },
-      );
-
+      // TODO: Создать пользователя в базе данных после подтверждения email
+      print('AuthService: Создаем пользователя после подтверждения email');
+      
       // Удаляем данные из временного хранилища
       _pendingUsers.remove(email);
 
-      if (response.user != null) {
-        print('AuthService: Пользователь успешно создан в Supabase, ID: ${response.user!.id}');
-        return AuthResult(
-          success: true,
-          message: 'Email успешно подтвержден. Регистрация завершена',
-          user: response.user,
-        );
-      }
-
-      print('AuthService: Не удалось создать пользователя в Supabase');
+      // TODO: Реализовать создание пользователя без Supabase
+      print('AuthService: Не удалось создать пользователя (функция не реализована)');
       return AuthResult(
         success: false,
-        message: 'Не удалось завершить регистрацию',
-      );
-    } on AuthException catch (e) {
-      print('AuthService: AuthException при подтверждении: ${e.message}');
-      return AuthResult(
-        success: false,
-        message: _getAuthErrorMessage(e.message),
+        message: 'Не удалось завершить регистрацию (функция не реализована)',
       );
     } catch (e) {
       print('AuthService: Ошибка подтверждения: $e');
@@ -233,25 +180,27 @@ class AuthService {
 
   /// Выход из системы
   static Future<void> signOut() async {
-    await SupabaseService.client.auth.signOut();
+    // TODO: Реализовать выход без Supabase
   }
 
   /// Получить текущего пользователя
-  static User? getCurrentUser() {
-    return SupabaseService.currentUser;
+  static String? getCurrentUser() {
+    // TODO: Реализовать получение текущего пользователя без Supabase
+    return null;
   }
 
   /// Получить текущего пользователя как UserModel
   static Future<UserModel?> getCurrentUserModel() async {
-    final user = getCurrentUser();
-    if (user == null) return null;
+    final userId = getCurrentUser();
+    if (userId == null) return null;
     
-    return await UserRepository.getUserById(user.id);
+    return await UserRepository.getUserById(userId);
   }
 
   /// Проверка авторизации
   static bool isAuthenticated() {
-    return SupabaseService.isAuthenticated;
+    // TODO: Реализовать проверку авторизации без Supabase
+    return false;
   }
 
   /// Преобразование ошибок в понятные сообщения
@@ -277,13 +226,13 @@ class AuthService {
 class AuthResult {
   final bool success;
   final String message;
-  final User? user;
+  final String? userId;
   final bool needsEmailConfirmation;
 
   AuthResult({
     required this.success,
     required this.message,
-    this.user,
+    this.userId,
     this.needsEmailConfirmation = false,
   });
 }

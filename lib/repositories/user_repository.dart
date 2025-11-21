@@ -1,64 +1,24 @@
 import 'package:cruch/models/user_model.dart';
-import 'package:cruch/services/supabase_service.dart';
 
 /// Репозиторий для работы с пользователями
 class UserRepository {
   
   /// Получить пользователя по ID
   static Future<UserModel?> getUserById(String userId) async {
-    try {
-      final users = await SupabaseService.getData(
-        'users',
-        filter: {'id': userId},
-        limit: 1,
-      );
-      
-      if (users.isNotEmpty) {
-        return UserModel.fromMap(users.first);
-      }
-      return null;
-    } catch (e) {
-      print('UserRepository: Ошибка получения пользователя по ID: $e');
-      return null;
-    }
+    // TODO: Реализовать получение пользователя без Supabase
+    return null;
   }
 
   /// Получить пользователя по email
   static Future<UserModel?> getUserByEmail(String email) async {
-    try {
-      final users = await SupabaseService.getData(
-        'users',
-        filter: {'email': email},
-        limit: 1,
-      );
-      
-      if (users.isNotEmpty) {
-        return UserModel.fromMap(users.first);
-      }
-      return null;
-    } catch (e) {
-      print('UserRepository: Ошибка получения пользователя по email: $e');
-      return null;
-    }
+    // TODO: Реализовать получение пользователя без Supabase
+    return null;
   }
 
   /// Получить пользователя по никнейму
   static Future<UserModel?> getUserByNickname(String nickname) async {
-    try {
-      final users = await SupabaseService.getData(
-        'users',
-        filter: {'nickname': nickname},
-        limit: 1,
-      );
-      
-      if (users.isNotEmpty) {
-        return UserModel.fromMap(users.first);
-      }
-      return null;
-    } catch (e) {
-      print('UserRepository: Ошибка получения пользователя по никнейму: $e');
-      return null;
-    }
+    // TODO: Реализовать получение пользователя без Supabase
+    return null;
   }
 
   /// Получить всех пользователей
@@ -67,38 +27,14 @@ class UserRepository {
     String? orderBy,
     bool ascending = true,
   }) async {
-    try {
-      final users = await SupabaseService.getData(
-        'users',
-        limit: limit,
-        orderBy: orderBy,
-        ascending: ascending,
-      );
-      
-      return users.map((user) => UserModel.fromMap(user)).toList();
-    } catch (e) {
-      print('UserRepository: Ошибка получения всех пользователей: $e');
-      return [];
-    }
+    // TODO: Реализовать получение всех пользователей без Supabase
+    return [];
   }
 
   /// Обновить данные пользователя
   static Future<UserModel?> updateUser(String userId, Map<String, dynamic> updates) async {
-    try {
-      final updatedUsers = await SupabaseService.updateData(
-        'users',
-        updates,
-        {'id': userId},
-      );
-      
-      if (updatedUsers.isNotEmpty) {
-        return UserModel.fromMap(updatedUsers.first);
-      }
-      return null;
-    } catch (e) {
-      print('UserRepository: Ошибка обновления пользователя: $e');
-      return null;
-    }
+    // TODO: Реализовать обновление пользователя без Supabase
+    return null;
   }
 
   /// Обновить никнейм пользователя
@@ -118,13 +54,8 @@ class UserRepository {
 
   /// Удалить пользователя
   static Future<bool> deleteUser(String userId) async {
-    try {
-      await SupabaseService.deleteData('users', {'id': userId});
-      return true;
-    } catch (e) {
-      print('UserRepository: Ошибка удаления пользователя: $e');
-      return false;
-    }
+    // TODO: Реализовать удаление пользователя без Supabase
+    return false;
   }
 
   /// Проверить, существует ли пользователь с таким email
@@ -141,18 +72,7 @@ class UserRepository {
 
   /// Поиск пользователей по никнейму
   static Future<List<UserModel>> searchUsersByNickname(String query) async {
-    try {
-      // Используем ILIKE для поиска без учета регистра
-      final users = await SupabaseService.client
-          .from('users')
-          .select()
-          .ilike('nickname', '%$query%')
-          .limit(20);
-      
-      return users.map((user) => UserModel.fromMap(user)).toList();
-    } catch (e) {
-      print('UserRepository: Ошибка поиска пользователей: $e');
-      return [];
-    }
+    // TODO: Реализовать поиск пользователей без Supabase
+    return [];
   }
 }

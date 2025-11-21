@@ -13,23 +13,23 @@ class AppInputStyles {
     return InputDecorationTheme(
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(borderRadius),
-        borderSide: const BorderSide(color: AppColors.divider),
+        borderSide: const BorderSide(color: AppColors.inputBorder, width: 2),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(borderRadius),
-        borderSide: const BorderSide(color: AppColors.divider),
+        borderSide: const BorderSide(color: AppColors.inputBorder, width: 2),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(borderRadius),
-        borderSide: const BorderSide(color: AppColors.primary, width: 2),
+        borderSide: const BorderSide(color: AppColors.inputBorder, width: 2),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(borderRadius),
-        borderSide: const BorderSide(color: AppColors.error),
+        borderSide: const BorderSide(color: AppColors.error, width: 2),
       ),
       contentPadding: contentPadding,
       labelStyle: AppTextStyles.inputLabel,
-      floatingLabelStyle: const TextStyle(color: AppColors.primary),
+      floatingLabelStyle: const TextStyle(color: AppColors.inputBorder),
     );
   }
 }
