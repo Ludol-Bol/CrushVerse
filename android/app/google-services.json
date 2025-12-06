@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "371879695000",
+    "project_id": "crushverse-42e49",
+    "storage_bucket": "crushverse-42e49.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371879695000:android:94e9a620516f101995b6ed",
+        "android_client_info": {
+          "package_name": "com.example.cruch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrtQ1tqmHkkVxtjfbFtyqMd136wsQhuTU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
