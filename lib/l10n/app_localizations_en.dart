@@ -102,4 +102,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get createAccountToContinue => 'Create an account to continue';
+
+  @override
+  String get registration => 'Registration';
+
+  @override
+  String get confirmPassword => 'Confirm Password';
+
+  @override
+  String get enterNickname => 'Enter nickname';
+
+  @override
+  String get nicknameMinLength => 'Nickname must be at least 3 characters';
+
+  @override
+  String get nicknameMaxLength => 'Nickname must be no more than 50 characters';
+
+  @override
+  String get enterEmail => 'Enter email';
+
+  @override
+  String get enterValidEmail => 'Enter a valid email';
+
+  @override
+  String get enterPassword => 'Enter password';
+
+  @override
+  String get confirmPasswordValidation => 'Confirm password';
+
+  @override
+  String get passwordsDoNotMatch => 'Passwords do not match';
+
+  @override
+  String get alreadyHaveAccount => 'Already have an account? ';
 }

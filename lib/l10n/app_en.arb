@@ -131,6 +131,50 @@
   "createAccountToContinue": "Create an account to continue",
   "@createAccountToContinue": {
     "description": "Subtitle text on registration screen"
+  },
+  "registration": "Registration",
+  "@registration": {
+    "description": "Registration screen title"
+  },
+  "confirmPassword": "Confirm Password",
+  "@confirmPassword": {
+    "description": "Confirm password label"
+  },
+  "enterNickname": "Enter nickname",
+  "@enterNickname": {
+    "description": "Validation message for empty nickname"
+  },
+  "nicknameMinLength": "Nickname must be at least 3 characters",
+  "@nicknameMinLength": {
+    "description": "Validation message for nickname minimum length"
+  },
+  "nicknameMaxLength": "Nickname must be no more than 50 characters",
+  "@nicknameMaxLength": {
+    "description": "Validation message for nickname maximum length"
+  },
+  "enterEmail": "Enter email",
+  "@enterEmail": {
+    "description": "Validation message for empty email"
+  },
+  "enterValidEmail": "Enter a valid email",
+  "@enterValidEmail": {
+    "description": "Validation message for invalid email format"
+  },
+  "enterPassword": "Enter password",
+  "@enterPassword": {
+    "description": "Validation message for empty password"
+  },
+  "confirmPasswordValidation": "Confirm password",
+  "@confirmPasswordValidation": {
+    "description": "Validation message for empty confirm password"
+  },
+  "passwordsDoNotMatch": "Passwords do not match",
+  "@passwordsDoNotMatch": {
+    "description": "Validation message when passwords don't match"
+  },
+  "alreadyHaveAccount": "Already have an account? ",
+  "@alreadyHaveAccount": {
+    "description": "Text before sign in link on registration screen"
   }
 }
 

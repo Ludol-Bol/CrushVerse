@@ -4,7 +4,12 @@ import 'package:cruch/themes/colors.dart';
 import 'package:cruch/l10n/app_localizations.dart';
 
 class LoginOrEmailWidget extends StatelessWidget {
-  const LoginOrEmailWidget({super.key});
+  final TextEditingController controller;
+  
+  const LoginOrEmailWidget({
+    super.key,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +18,10 @@ class LoginOrEmailWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(l10n.nicknameOrEmail, style: AppTextStyles.bodyText1),
-        const TextField(
+        TextField(
+          controller: controller,
           style: AppTextStyles.inputText,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             prefixIcon: Icon(Icons.person_outline, color: AppColors.inputBorder),
           ),
           keyboardType: TextInputType.emailAddress,

@@ -265,6 +265,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Create an account to continue'**
   String get createAccountToContinue;
+
+  /// Registration screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Registration'**
+  String get registration;
+
+  /// Confirm password label
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get confirmPassword;
+
+  /// Validation message for empty nickname
+  ///
+  /// In en, this message translates to:
+  /// **'Enter nickname'**
+  String get enterNickname;
+
+  /// Validation message for nickname minimum length
+  ///
+  /// In en, this message translates to:
+  /// **'Nickname must be at least 3 characters'**
+  String get nicknameMinLength;
+
+  /// Validation message for nickname maximum length
+  ///
+  /// In en, this message translates to:
+  /// **'Nickname must be no more than 50 characters'**
+  String get nicknameMaxLength;
+
+  /// Validation message for empty email
+  ///
+  /// In en, this message translates to:
+  /// **'Enter email'**
+  String get enterEmail;
+
+  /// Validation message for invalid email format
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email'**
+  String get enterValidEmail;
+
+  /// Validation message for empty password
+  ///
+  /// In en, this message translates to:
+  /// **'Enter password'**
+  String get enterPassword;
+
+  /// Validation message for empty confirm password
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm password'**
+  String get confirmPasswordValidation;
+
+  /// Validation message when passwords don't match
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get passwordsDoNotMatch;
+
+  /// Text before sign in link on registration screen
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? '**
+  String get alreadyHaveAccount;
 }
 
 class _AppLocalizationsDelegate

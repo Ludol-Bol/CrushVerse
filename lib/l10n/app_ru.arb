@@ -58,6 +58,50 @@
   "createAccountToContinue": "Создайте аккаунт для продолжения",
   "@createAccountToContinue": {
     "description": "Подзаголовок на экране регистрации"
+  },
+  "registration": "Регистрация",
+  "@registration": {
+    "description": "Заголовок экрана регистрации"
+  },
+  "confirmPassword": "Повторите пароль",
+  "@confirmPassword": {
+    "description": "Лейбл поля подтверждения пароля"
+  },
+  "enterNickname": "Введите никнейм",
+  "@enterNickname": {
+    "description": "Сообщение валидации для пустого никнейма"
+  },
+  "nicknameMinLength": "Никнейм должен быть не менее 3 символов",
+  "@nicknameMinLength": {
+    "description": "Сообщение валидации для минимальной длины никнейма"
+  },
+  "nicknameMaxLength": "Никнейм должен быть не более 50 символов",
+  "@nicknameMaxLength": {
+    "description": "Сообщение валидации для максимальной длины никнейма"
+  },
+  "enterEmail": "Введите email",
+  "@enterEmail": {
+    "description": "Сообщение валидации для пустого email"
+  },
+  "enterValidEmail": "Введите корректный email",
+  "@enterValidEmail": {
+    "description": "Сообщение валидации для неверного формата email"
+  },
+  "enterPassword": "Введите пароль",
+  "@enterPassword": {
+    "description": "Сообщение валидации для пустого пароля"
+  },
+  "confirmPasswordValidation": "Подтвердите пароль",
+  "@confirmPasswordValidation": {
+    "description": "Сообщение валидации для пустого подтверждения пароля"
+  },
+  "passwordsDoNotMatch": "Пароли не совпадают",
+  "@passwordsDoNotMatch": {
+    "description": "Сообщение валидации когда пароли не совпадают"
+  },
+  "alreadyHaveAccount": "Уже есть аккаунт? ",
+  "@alreadyHaveAccount": {
+    "description": "Текст перед ссылкой входа на экране регистрации"
   }
 }
 

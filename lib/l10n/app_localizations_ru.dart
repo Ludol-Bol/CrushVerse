@@ -103,4 +103,37 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get createAccountToContinue => 'Создайте аккаунт для продолжения';
+
+  @override
+  String get registration => 'Регистрация';
+
+  @override
+  String get confirmPassword => 'Повторите пароль';
+
+  @override
+  String get enterNickname => 'Введите никнейм';
+
+  @override
+  String get nicknameMinLength => 'Никнейм должен быть не менее 3 символов';
+
+  @override
+  String get nicknameMaxLength => 'Никнейм должен быть не более 50 символов';
+
+  @override
+  String get enterEmail => 'Введите email';
+
+  @override
+  String get enterValidEmail => 'Введите корректный email';
+
+  @override
+  String get enterPassword => 'Введите пароль';
+
+  @override
+  String get confirmPasswordValidation => 'Подтвердите пароль';
+
+  @override
+  String get passwordsDoNotMatch => 'Пароли не совпадают';
+
+  @override
+  String get alreadyHaveAccount => 'Уже есть аккаунт? ';
 }

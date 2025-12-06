@@ -4,7 +4,13 @@ import 'package:cruch/themes/colors.dart';
 import 'package:cruch/l10n/app_localizations.dart';
 
 class PasswordWidget extends StatefulWidget{
-  const PasswordWidget({super.key});
+  final TextEditingController controller;
+  
+  const PasswordWidget({
+    super.key,
+    required this.controller,
+  });
+  
   @override
   State<PasswordWidget> createState() => _PasswordWidgetState();
 }
@@ -25,7 +31,8 @@ class _PasswordWidgetState extends State<PasswordWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(l10n.password, style: AppTextStyles.bodyText1),
-        TextField(
+        TextFormField(
+          controller: widget.controller,
           obscureText: _obscureText,
           style: AppTextStyles.inputText,
           decoration: InputDecoration(
@@ -38,6 +45,12 @@ class _PasswordWidgetState extends State<PasswordWidget> {
               onPressed: _toggleVisibility,
             ),
           ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return l10n.enterPassword;
+            }
+            return null;
+          },
         ),
       ],
     );

@@ -100,8 +100,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: const Text(
-          'Регистрация',
+        title: Text(
+          l10n.registration,
           style: AppTextStyles.headline4,
         ),
         centerTitle: false,
@@ -134,13 +134,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: _buildInputDecoration(prefixIcon: const Icon(Icons.person_outline, color: AppColors.inputBorder)),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Введите никнейм';
+                          return l10n.enterNickname;
                         }
                         if (value.length < 3) {
-                          return 'Никнейм должен быть не менее 3 символов';
+                          return l10n.nicknameMinLength;
                         }
                         if (value.length > 50) {
-                          return 'Никнейм должен быть не более 50 символов';
+                          return l10n.nicknameMaxLength;
                         }
                         return null;
                       },
@@ -161,10 +161,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: _buildInputDecoration(prefixIcon: const Icon(Icons.email_outlined, color: AppColors.inputBorder)),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Введите email';
+                          return l10n.enterEmail;
                         }
                         if (!value.contains('@')) {
-                          return 'Введите корректный email';
+                          return l10n.enterValidEmail;
                         }
                         return null;
                       },
@@ -198,10 +198,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Введите пароль';
+                          return l10n.enterPassword;
                         }
                         if (value.length < 6) {
-                          return 'Пароль должен быть не менее 6 символов';
+                          return l10n.passwordTooShort;
                         }
                         return null;
                       },
@@ -214,7 +214,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(l10n.password, style: AppTextStyles.bodyText1),
+                    Text(l10n.confirmPassword, style: AppTextStyles.bodyText1),
                     TextFormField(
                       controller: _confirmPasswordController,
                       obscureText: _obscureConfirmPassword,
@@ -236,10 +236,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Подтвердите пароль';
+                          return l10n.confirmPasswordValidation;
                         }
                         if (value != _passwordController.text) {
-                          return 'Пароли не совпадают';
+                          return l10n.passwordsDoNotMatch;
                         }
                         return null;
                       },
@@ -279,13 +279,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      'Уже есть аккаунт? ',
+                    Text(
+                      l10n.alreadyHaveAccount,
                       style: AppTextStyles.bodyText1,
                     ),
                     TextButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      child: const Text('Войти'),
+                      child: Text(
+                        l10n.signIn,
+                        style: AppTextStyles.bodyText1.copyWith(
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
                     ),
                   ],
                 ),

@@ -1,6 +1,7 @@
 import 'package:cruch/screens/login_screen/widgets/password_widget.dart';
-import 'package:cruch/screens/login_screen/widgets/widget.dart';
 import 'package:cruch/screens/register_screen/register_screen.dart';
+import 'package:cruch/screens/main_screen.dart';
+import 'package:cruch/services/auth_service.dart';
 import 'package:cruch/themes/colors.dart';
 import 'package:cruch/themes/input_styles.dart';
 import 'package:cruch/themes/text_styles.dart';
@@ -17,6 +18,50 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  bool _isLoading = false;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _signIn() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    setState(() => _isLoading = true);
+
+    final result = await AuthService.signInWithEmail(
+      email: _emailController.text.trim(),
+      password: _passwordController.text,
+    );
+
+    setState(() => _isLoading = false);
+
+    if (!mounted) return;
+
+    if (result.success) {
+      // Переход на главный экран
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (_) => const MainScreen()),
+        (route) => false,
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(result.message),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -43,9 +88,38 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 40),
-              const LoginOrEmailWidget(),
-              const SizedBox(height: 12),
-              const PasswordWidget(),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(l10n.nicknameOrEmail, style: AppTextStyles.bodyText1),
+                        TextFormField(
+                          controller: _emailController,
+                          style: AppTextStyles.inputText,
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.person_outline, color: AppColors.inputBorder),
+                          ),
+                          keyboardType: TextInputType.emailAddress,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return l10n.enterEmail;
+                            }
+                            if (!value.contains('@')) {
+                              return l10n.enterValidEmail;
+                            }
+                            return null;
+                          },
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    PasswordWidget(controller: _passwordController),
+                  ],
+                ),
+              ),
               const SizedBox(height: 8),
               const RememberMeRowWidget(),
               const SizedBox(height: 24),
@@ -53,16 +127,27 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: _isLoading ? null : _signIn,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.buttonBackground,
                         foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                        disabledBackgroundColor: AppColors.buttonBackground,
+                        disabledForegroundColor: Theme.of(context).colorScheme.onPrimary,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
                         padding: const EdgeInsets.symmetric(vertical: 16),
                       ),
-                      child: Text(l10n.signIn.toUpperCase(), style: AppTextStyles.bodyText1),
+                      child: _isLoading
+                          ? const SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                              ),
+                            )
+                          : Text(l10n.signIn.toUpperCase(), style: AppTextStyles.bodyText1),
                     ),
                   ),
                   const SizedBox(width: 16),

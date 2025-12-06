@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 /// Модель пользователя для приложения
 class UserModel {
   final String id;
@@ -6,6 +8,7 @@ class UserModel {
   final String? icon;
   final DateTime? birthDate;
   final DateTime createdAt;
+  final String? passwordHash; // Хеш пароля (только для чтения из БД, не сохраняется обратно)
 
   UserModel({
     required this.id,
@@ -14,32 +17,56 @@ class UserModel {
     this.icon,
     this.birthDate,
     required this.createdAt,
+    this.passwordHash,
   });
 
-  /// Создание модели из Map
-  factory UserModel.fromMap(Map<String, dynamic> map) {
+  /// Создание модели из Map (для Firestore)
+  factory UserModel.fromMap(Map<String, dynamic> map, {String? documentId}) {
+    // Поддержка как Firestore Timestamp, так и строк ISO8601
+    DateTime? parseDate(dynamic value) {
+      if (value == null) return null;
+      if (value is Timestamp) {
+        return value.toDate();
+      }
+      if (value is String) {
+        return DateTime.parse(value);
+      }
+      return null;
+    }
+
     return UserModel(
-      id: map['id'] as String,
+      id: documentId ?? map['id'] as String? ?? '',
       email: map['email'] as String,
       nickname: map['nickname'] as String,
       icon: map['icon'] as String?,
-      birthDate: map['birth_date'] != null 
-          ? DateTime.parse(map['birth_date'] as String)
-          : null,
-      createdAt: DateTime.parse(map['created_at'] as String),
+      birthDate: parseDate(map['birth_date']),
+      createdAt: parseDate(map['created_at']) ?? DateTime.now(),
+      passwordHash: map['password_hash'] as String?,
     );
   }
 
-  /// Преобразование модели в Map
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
+  /// Преобразование модели в Map (для Firestore)
+  Map<String, dynamic> toMap({bool includeId = false, String? passwordHash}) {
+    final map = <String, dynamic>{
       'email': email,
       'nickname': nickname,
       'icon': icon,
-      'birth_date': birthDate?.toIso8601String(),
-      'created_at': createdAt.toIso8601String(),
+      'birth_date': birthDate != null 
+          ? Timestamp.fromDate(birthDate!)
+          : null,
+      'created_at': Timestamp.fromDate(createdAt),
     };
+    
+    // Добавляем хеш пароля только если он передан
+    if (passwordHash != null) {
+      map['password_hash'] = passwordHash;
+    }
+    
+    if (includeId) {
+      map['id'] = id;
+    }
+    
+    return map;
   }
 
   /// Создание копии модели с измененными полями
@@ -50,6 +77,7 @@ class UserModel {
     String? icon,
     DateTime? birthDate,
     DateTime? createdAt,
+    String? passwordHash,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -58,6 +86,7 @@ class UserModel {
       icon: icon ?? this.icon,
       birthDate: birthDate ?? this.birthDate,
       createdAt: createdAt ?? this.createdAt,
+      passwordHash: passwordHash ?? this.passwordHash,
     );
   }
 
