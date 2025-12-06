@@ -259,6 +259,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Error sending code: {error}'**
   String resendCodeError(String error);
+
+  /// Subtitle text on registration screen
+  ///
+  /// In en, this message translates to:
+  /// **'Create an account to continue'**
+  String get createAccountToContinue;
 }
 
 class _AppLocalizationsDelegate

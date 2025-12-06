@@ -100,4 +100,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String resendCodeError(String error) {
     return 'Ошибка отправки кода: $error';
   }
+
+  @override
+  String get createAccountToContinue => 'Создайте аккаунт для продолжения';
 }

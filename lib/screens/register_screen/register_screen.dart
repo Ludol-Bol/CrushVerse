@@ -4,6 +4,7 @@ import 'package:cruch/themes/button_styles.dart';
 import 'package:cruch/themes/colors.dart';
 import 'package:cruch/themes/input_styles.dart';
 import 'package:cruch/themes/text_styles.dart';
+import 'package:cruch/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -33,28 +34,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.dispose();
   }
 
-  InputDecoration _buildInputDecoration(String label, {Widget? prefixIcon, Widget? suffixIcon}) {
+  InputDecoration _buildInputDecoration({Widget? prefixIcon, Widget? suffixIcon}) {
     return InputDecoration(
-      labelText: label,
       prefixIcon: prefixIcon,
       suffixIcon: suffixIcon,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(AppInputStyles.borderRadius),
-        borderSide: const BorderSide(color: AppColors.inputBorder, width: 2),
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(AppInputStyles.borderRadius),
-        borderSide: const BorderSide(color: AppColors.inputBorder, width: 2),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(AppInputStyles.borderRadius),
-        borderSide: const BorderSide(color: AppColors.inputBorder, width: 2),
-      ),
-      errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(AppInputStyles.borderRadius),
-        borderSide: const BorderSide(color: AppColors.error, width: 2),
-      ),
-      contentPadding: AppInputStyles.contentPadding,
     );
   }
 
@@ -107,6 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
@@ -116,6 +100,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
           icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
           onPressed: () => Navigator.of(context).pop(),
         ),
+        title: const Text(
+          'Регистрация',
+          style: AppTextStyles.headline4,
+        ),
+        centerTitle: false,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -125,15 +114,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Заголовок
-                const Text(
-                  'Регистрация',
-                  style: AppTextStyles.headline4,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 8),
                 Text(
-                  'Создайте аккаунт для продолжения',
+                  l10n.createAccountToContinue,
                   style: AppTextStyles.bodyText1.copyWith(
                     color: AppColors.textSecondary,
                   ),
@@ -142,110 +124,143 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 const SizedBox(height: 40),
 
                 // Никнейм
-                TextFormField(
-                  controller: _nicknameController,
-                  style: AppTextStyles.inputText,
-                  decoration: _buildInputDecoration('Никнейм', prefixIcon: const Icon(Icons.person_outline)),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Введите никнейм';
-                    }
-                    if (value.length < 3) {
-                      return 'Никнейм должен быть не менее 3 символов';
-                    }
-                    if (value.length > 50) {
-                      return 'Никнейм должен быть не более 50 символов';
-                    }
-                    return null;
-                  },
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(l10n.nickname, style: AppTextStyles.bodyText1),
+                    TextFormField(
+                      controller: _nicknameController,
+                      style: AppTextStyles.inputText,
+                      decoration: _buildInputDecoration(prefixIcon: const Icon(Icons.person_outline, color: AppColors.inputBorder)),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Введите никнейм';
+                        }
+                        if (value.length < 3) {
+                          return 'Никнейм должен быть не менее 3 символов';
+                        }
+                        if (value.length > 50) {
+                          return 'Никнейм должен быть не более 50 символов';
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 16),
 
                 // Email
-                TextFormField(
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  style: AppTextStyles.inputText,
-                  decoration: _buildInputDecoration('Email', prefixIcon: const Icon(Icons.email_outlined)),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Введите email';
-                    }
-                    if (!value.contains('@')) {
-                      return 'Введите корректный email';
-                    }
-                    return null;
-                  },
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(l10n.email, style: AppTextStyles.bodyText1),
+                    TextFormField(
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      style: AppTextStyles.inputText,
+                      decoration: _buildInputDecoration(prefixIcon: const Icon(Icons.email_outlined, color: AppColors.inputBorder)),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Введите email';
+                        }
+                        if (!value.contains('@')) {
+                          return 'Введите корректный email';
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 16),
 
                 // Пароль
-                TextFormField(
-                  controller: _passwordController,
-                  obscureText: _obscurePassword,
-                  style: AppTextStyles.inputText,
-                  decoration: _buildInputDecoration(
-                    'Пароль',
-                    prefixIcon: const Icon(Icons.lock_outline),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _obscurePassword
-                            ? Icons.visibility_outlined
-                            : Icons.visibility_off_outlined,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(l10n.password, style: AppTextStyles.bodyText1),
+                    TextFormField(
+                      controller: _passwordController,
+                      obscureText: _obscurePassword,
+                      style: AppTextStyles.inputText,
+                      decoration: _buildInputDecoration(
+                        prefixIcon: const Icon(Icons.lock_outline, color: AppColors.inputBorder),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _obscurePassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: AppColors.inputBorder,
+                          ),
+                          onPressed: () {
+                            setState(() => _obscurePassword = !_obscurePassword);
+                          },
+                        ),
                       ),
-                      onPressed: () {
-                        setState(() => _obscurePassword = !_obscurePassword);
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Введите пароль';
+                        }
+                        if (value.length < 6) {
+                          return 'Пароль должен быть не менее 6 символов';
+                        }
+                        return null;
                       },
                     ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Введите пароль';
-                    }
-                    if (value.length < 6) {
-                      return 'Пароль должен быть не менее 6 символов';
-                    }
-                    return null;
-                  },
+                  ],
                 ),
                 const SizedBox(height: 16),
 
                 // Подтверждение пароля
-                TextFormField(
-                  controller: _confirmPasswordController,
-                  obscureText: _obscureConfirmPassword,
-                  style: AppTextStyles.inputText,
-                  decoration: _buildInputDecoration(
-                    'Подтвердите пароль',
-                    prefixIcon: const Icon(Icons.lock_outline),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _obscureConfirmPassword
-                            ? Icons.visibility_outlined
-                            : Icons.visibility_off_outlined,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(l10n.password, style: AppTextStyles.bodyText1),
+                    TextFormField(
+                      controller: _confirmPasswordController,
+                      obscureText: _obscureConfirmPassword,
+                      style: AppTextStyles.inputText,
+                      decoration: _buildInputDecoration(
+                        prefixIcon: const Icon(Icons.lock_outline, color: AppColors.inputBorder),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _obscureConfirmPassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: AppColors.inputBorder,
+                          ),
+                          onPressed: () {
+                            setState(
+                                () => _obscureConfirmPassword = !_obscureConfirmPassword);
+                          },
+                        ),
                       ),
-                      onPressed: () {
-                        setState(
-                            () => _obscureConfirmPassword = !_obscureConfirmPassword);
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Подтвердите пароль';
+                        }
+                        if (value != _passwordController.text) {
+                          return 'Пароли не совпадают';
+                        }
+                        return null;
                       },
                     ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Подтвердите пароль';
-                    }
-                    if (value != _passwordController.text) {
-                      return 'Пароли не совпадают';
-                    }
-                    return null;
-                  },
+                  ],
                 ),
                 const SizedBox(height: 32),
 
                 // Кнопка регистрации
                 ElevatedButton(
                   onPressed: _isLoading ? null : _register,
-                  style: AppButtonStyles.elevated,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.buttonBackground,
+                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                    disabledBackgroundColor: AppColors.buttonBackground,
+                    disabledForegroundColor: Theme.of(context).colorScheme.onPrimary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                  ),
                   child: _isLoading
                       ? const SizedBox(
                           height: 20,
@@ -256,7 +271,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 AlwaysStoppedAnimation<Color>(Colors.white),
                           ),
                         )
-                      : const Text('Зарегистрироваться'),
+                      : Text(l10n.signUp.toUpperCase(), style: AppTextStyles.bodyText1),
                 ),
                 const SizedBox(height: 16),
 

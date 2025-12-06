@@ -99,4 +99,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String resendCodeError(String error) {
     return 'Error sending code: $error';
   }
+
+  @override
+  String get createAccountToContinue => 'Create an account to continue';
 }

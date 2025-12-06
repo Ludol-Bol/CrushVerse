@@ -127,6 +127,10 @@
         "type": "String"
       }
     }
+  },
+  "createAccountToContinue": "Create an account to continue",
+  "@createAccountToContinue": {
+    "description": "Subtitle text on registration screen"
   }
 }
 

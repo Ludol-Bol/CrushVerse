@@ -54,6 +54,10 @@
         "type": "String"
       }
     }
+  },
+  "createAccountToContinue": "Создайте аккаунт для продолжения",
+  "@createAccountToContinue": {
+    "description": "Подзаголовок на экране регистрации"
   }
 }
 
