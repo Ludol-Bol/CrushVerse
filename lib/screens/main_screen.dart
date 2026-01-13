@@ -1,5 +1,6 @@
 import 'package:cruch/services/auth_service.dart';
 import 'package:cruch/models/user_model.dart';
+import 'package:cruch/screens/login_screen/screen/login_screen.dart';
 import 'package:cruch/themes/colors.dart';
 import 'package:cruch/themes/text_styles.dart';
 import 'package:flutter/material.dart';
@@ -119,10 +120,14 @@ class _MainScreenState extends State<MainScreen> {
 
   Future<void> _signOut() async {
     try {
-      await AuthService.signOut();
-      if (mounted) {
-        Navigator.of(context).pushReplacementNamed('/login');
-      }
+      await AuthService.signOut(clearRememberMe: true);
+      if (!mounted) return;
+      
+      // Переход на экран авторизации с очисткой стека навигации
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (_) => const LoginScreen()),
+        (route) => false,
+      );
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(

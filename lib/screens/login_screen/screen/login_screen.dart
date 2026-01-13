@@ -22,6 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _isLoading = false;
+  bool _rememberMe = false;
 
   @override
   void dispose() {
@@ -40,6 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final result = await AuthService.signInWithEmail(
       email: _emailController.text.trim(),
       password: _passwordController.text,
+      rememberMe: _rememberMe,
     );
 
     setState(() => _isLoading = false);
@@ -121,7 +123,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              const RememberMeRowWidget(),
+              RememberMeRowWidget(
+                value: _rememberMe,
+                onChanged: (value) {
+                  setState(() {
+                    _rememberMe = value;
+                  });
+                },
+              ),
               const SizedBox(height: 24),
               Row(
                 children: [

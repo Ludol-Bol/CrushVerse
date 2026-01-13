@@ -175,6 +175,54 @@
   "alreadyHaveAccount": "Already have an account? ",
   "@alreadyHaveAccount": {
     "description": "Text before sign in link on registration screen"
+  },
+  "passwordReset": "Password Reset",
+  "@passwordReset": {
+    "description": "Password reset screen title"
+  },
+  "enterEmailForPasswordReset": "Enter your email to reset your password",
+  "@enterEmailForPasswordReset": {
+    "description": "Message on password reset screen"
+  },
+  "sendCode": "Send Code",
+  "@sendCode": {
+    "description": "Button to send verification code"
+  },
+  "codeSentTo": "Code sent to",
+  "@codeSentTo": {
+    "description": "Message indicating code was sent"
+  },
+  "confirmCode": "Confirm Code",
+  "@confirmCode": {
+    "description": "Button to confirm verification code"
+  },
+  "didNotReceiveCode": "Didn't receive code? ",
+  "@didNotReceiveCode": {
+    "description": "Text before resend code link"
+  },
+  "sendAgain": "Send Again",
+  "@sendAgain": {
+    "description": "Link to resend verification code"
+  },
+  "newPassword": "New Password",
+  "@newPassword": {
+    "description": "New password label"
+  },
+  "confirmNewPassword": "Confirm New Password",
+  "@confirmNewPassword": {
+    "description": "Confirm new password label"
+  },
+  "changePassword": "Change Password",
+  "@changePassword": {
+    "description": "Button to change password"
+  },
+  "enterSixDigitCode": "Enter 6-digit code",
+  "@enterSixDigitCode": {
+    "description": "Validation message for code input"
+  },
+  "passwordChangedSuccessfully": "Password changed successfully",
+  "@passwordChangedSuccessfully": {
+    "description": "Success message after password change"
   }
 }
 

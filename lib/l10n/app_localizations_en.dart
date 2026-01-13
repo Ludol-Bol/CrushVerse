@@ -135,4 +135,41 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get alreadyHaveAccount => 'Already have an account? ';
+
+  @override
+  String get passwordReset => 'Password Reset';
+
+  @override
+  String get enterEmailForPasswordReset =>
+      'Enter your email to reset your password';
+
+  @override
+  String get sendCode => 'Send Code';
+
+  @override
+  String get codeSentTo => 'Code sent to';
+
+  @override
+  String get confirmCode => 'Confirm Code';
+
+  @override
+  String get didNotReceiveCode => 'Didn\'t receive code? ';
+
+  @override
+  String get sendAgain => 'Send Again';
+
+  @override
+  String get newPassword => 'New Password';
+
+  @override
+  String get confirmNewPassword => 'Confirm New Password';
+
+  @override
+  String get changePassword => 'Change Password';
+
+  @override
+  String get enterSixDigitCode => 'Enter 6-digit code';
+
+  @override
+  String get passwordChangedSuccessfully => 'Password changed successfully';
 }

@@ -1,18 +1,19 @@
+import 'package:cruch/screens/forgot_password_screen/forgot_password_screen.dart';
 import 'package:cruch/themes/text_styles.dart';
 import 'package:cruch/themes/colors.dart';
 import 'package:cruch/themes/checkbox_styles.dart';
 import 'package:cruch/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
-class RememberMeRowWidget extends StatefulWidget {
-  const RememberMeRowWidget({super.key});
+class RememberMeRowWidget extends StatelessWidget {
+  final bool value;
+  final ValueChanged<bool> onChanged;
 
-  @override
-  State<RememberMeRowWidget> createState() => _RememberMeRowWidgetState();
-}
-
-class _RememberMeRowWidgetState extends State<RememberMeRowWidget> {
-  bool _rememberMe = false;
+  const RememberMeRowWidget({
+    super.key,
+    required this.value,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class _RememberMeRowWidgetState extends State<RememberMeRowWidget> {
     return Row(
       children: [
         GestureDetector(
-          onTap: () => setState(() => _rememberMe = !_rememberMe),
+          onTap: () => onChanged(!value),
           child: Container(
             width: 24,
             height: 24,
@@ -32,7 +33,7 @@ class _RememberMeRowWidgetState extends State<RememberMeRowWidget> {
                 width: 2,
               ),
             ),
-            child: _rememberMe
+            child: value
                 ? const Icon(
                     Icons.check,
                     size: 18,
@@ -45,7 +46,13 @@ class _RememberMeRowWidgetState extends State<RememberMeRowWidget> {
         Text(l10n.rememberMe, style: AppTextStyles.bodyText3),
         const Spacer(),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => const ForgotPasswordScreen(),
+              ),
+            );
+          },
           child: Text(l10n.forgotPassword, style: AppTextStyles.bodyText3),
         ),
       ],

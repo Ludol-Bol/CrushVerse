@@ -331,6 +331,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Already have an account? '**
   String get alreadyHaveAccount;
+
+  /// Password reset screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Password Reset'**
+  String get passwordReset;
+
+  /// Message on password reset screen
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email to reset your password'**
+  String get enterEmailForPasswordReset;
+
+  /// Button to send verification code
+  ///
+  /// In en, this message translates to:
+  /// **'Send Code'**
+  String get sendCode;
+
+  /// Message indicating code was sent
+  ///
+  /// In en, this message translates to:
+  /// **'Code sent to'**
+  String get codeSentTo;
+
+  /// Button to confirm verification code
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Code'**
+  String get confirmCode;
+
+  /// Text before resend code link
+  ///
+  /// In en, this message translates to:
+  /// **'Didn\'t receive code? '**
+  String get didNotReceiveCode;
+
+  /// Link to resend verification code
+  ///
+  /// In en, this message translates to:
+  /// **'Send Again'**
+  String get sendAgain;
+
+  /// New password label
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get newPassword;
+
+  /// Confirm new password label
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm New Password'**
+  String get confirmNewPassword;
+
+  /// Button to change password
+  ///
+  /// In en, this message translates to:
+  /// **'Change Password'**
+  String get changePassword;
+
+  /// Validation message for code input
+  ///
+  /// In en, this message translates to:
+  /// **'Enter 6-digit code'**
+  String get enterSixDigitCode;
+
+  /// Success message after password change
+  ///
+  /// In en, this message translates to:
+  /// **'Password changed successfully'**
+  String get passwordChangedSuccessfully;
 }
 
 class _AppLocalizationsDelegate

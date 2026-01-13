@@ -102,7 +102,19 @@
   "alreadyHaveAccount": "Уже есть аккаунт? ",
   "@alreadyHaveAccount": {
     "description": "Текст перед ссылкой входа на экране регистрации"
-  }
+  },
+  "passwordReset": "Восстановление пароля",
+  "enterEmailForPasswordReset": "Введите ваш email для восстановления пароля",
+  "sendCode": "Отправить код",
+  "codeSentTo": "Код отправлен на",
+  "confirmCode": "Подтвердить код",
+  "didNotReceiveCode": "Не получили код? ",
+  "sendAgain": "Отправить снова",
+  "newPassword": "Новый пароль",
+  "confirmNewPassword": "Подтвердите пароль",
+  "changePassword": "Изменить пароль",
+  "enterSixDigitCode": "Введите 6-значный код",
+  "passwordChangedSuccessfully": "Пароль успешно изменен"
 }
 
 

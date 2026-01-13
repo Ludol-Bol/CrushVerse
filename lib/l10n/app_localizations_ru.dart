@@ -136,4 +136,41 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get alreadyHaveAccount => 'Уже есть аккаунт? ';
+
+  @override
+  String get passwordReset => 'Восстановление пароля';
+
+  @override
+  String get enterEmailForPasswordReset =>
+      'Введите ваш email для восстановления пароля';
+
+  @override
+  String get sendCode => 'Отправить код';
+
+  @override
+  String get codeSentTo => 'Код отправлен на';
+
+  @override
+  String get confirmCode => 'Подтвердить код';
+
+  @override
+  String get didNotReceiveCode => 'Не получили код? ';
+
+  @override
+  String get sendAgain => 'Отправить снова';
+
+  @override
+  String get newPassword => 'Новый пароль';
+
+  @override
+  String get confirmNewPassword => 'Подтвердите пароль';
+
+  @override
+  String get changePassword => 'Изменить пароль';
+
+  @override
+  String get enterSixDigitCode => 'Введите 6-значный код';
+
+  @override
+  String get passwordChangedSuccessfully => 'Пароль успешно изменен';
 }

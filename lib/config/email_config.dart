@@ -16,6 +16,9 @@ class EmailConfig {
   // Шаблон письма для верификации
   static const String verificationSubject = 'Подтверждение регистрации';
   
+  // Шаблон письма для восстановления пароля
+  static const String passwordResetSubject = 'Восстановление пароля';
+  
   static String verificationBody(String code) {
     return '''
 <!DOCTYPE html>
@@ -32,19 +35,19 @@ class EmailConfig {
       padding: 20px;
     }
     .container {
-      background-color: #f9f9f9;
+      background-color: #E5E5E5;
       border-radius: 10px;
       padding: 30px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 4px rgba(107, 90, 110, 0.1);
     }
     .header {
       text-align: center;
-      color: #4A90E2;
+      color: #6B5A6E;
       margin-bottom: 30px;
     }
     .code-container {
       background-color: #fff;
-      border: 2px dashed #4A90E2;
+      border: 2px dashed #B89CB8;
       border-radius: 8px;
       padding: 20px;
       text-align: center;
@@ -54,16 +57,16 @@ class EmailConfig {
       font-size: 32px;
       font-weight: bold;
       letter-spacing: 8px;
-      color: #4A90E2;
+      color: #684F66;
       font-family: 'Courier New', monospace;
     }
     .footer {
       text-align: center;
-      color: #666;
+      color: #A89BAE;
       font-size: 14px;
       margin-top: 30px;
       padding-top: 20px;
-      border-top: 1px solid #ddd;
+      border-top: 1px solid #C7B6CC;
     }
     .warning {
       color: #e74c3c;
@@ -92,7 +95,7 @@ class EmailConfig {
     
     <div class="footer">
       <p>С уважением,<br>Команда CruchVerse</p>
-      <p style="font-size: 12px; color: #999;">Это автоматическое письмо, пожалуйста, не отвечайте на него.</p>
+      <p style="font-size: 12px; color: #A89BAE;">Это автоматическое письмо, пожалуйста, не отвечайте на него.</p>
     </div>
   </div>
 </body>
@@ -112,6 +115,112 @@ class EmailConfig {
 Этот код действителен в течение 10 минут.
 
 Если вы не регистрировались в CruchVerse, просто проигнорируйте это письмо.
+
+С уважением,
+Команда CruchVerse
+
+---
+Это автоматическое письмо, пожалуйста, не отвечайте на него.
+''';
+  }
+
+  static String passwordResetBody(String code) {
+    return '''
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .container {
+      background-color: #E5E5E5;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 2px 4px rgba(107, 90, 110, 0.1);
+    }
+    .header {
+      text-align: center;
+      color: #6B5A6E;
+      margin-bottom: 30px;
+    }
+    .code-container {
+      background-color: #fff;
+      border: 2px dashed #B89CB8;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      margin: 30px 0;
+    }
+    .code {
+      font-size: 32px;
+      font-weight: bold;
+      letter-spacing: 8px;
+      color: #684F66;
+      font-family: 'Courier New', monospace;
+    }
+    .footer {
+      text-align: center;
+      color: #A89BAE;
+      font-size: 14px;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #C7B6CC;
+    }
+    .warning {
+      color: #e74c3c;
+      font-size: 12px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Восстановление пароля</h1>
+    </div>
+    
+    <p>Здравствуйте!</p>
+    
+    <p>Вы запросили восстановление пароля для вашего аккаунта в CruchVerse. Для сброса пароля используйте следующий код:</p>
+    
+    <div class="code-container">
+      <div class="code">$code</div>
+    </div>
+    
+    <p>Этот код действителен в течение 10 минут.</p>
+    
+    <p class="warning">⚠️ Если вы не запрашивали восстановление пароля, просто проигнорируйте это письмо. Ваш пароль останется без изменений.</p>
+    
+    <div class="footer">
+      <p>С уважением,<br>Команда CruchVerse</p>
+      <p style="font-size: 12px; color: #A89BAE;">Это автоматическое письмо, пожалуйста, не отвечайте на него.</p>
+    </div>
+  </div>
+</body>
+</html>
+''';
+  }
+
+  static String passwordResetBodyPlain(String code) {
+    return '''
+Восстановление пароля
+
+Здравствуйте!
+
+Вы запросили восстановление пароля для вашего аккаунта в CruchVerse.
+
+Ваш код восстановления: $code
+
+Этот код действителен в течение 10 минут.
+
+Если вы не запрашивали восстановление пароля, просто проигнорируйте это письмо.
 
 С уважением,
 Команда CruchVerse

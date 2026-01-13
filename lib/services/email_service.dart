@@ -7,6 +7,8 @@ import 'package:mailer/smtp_server.dart';
 class EmailService {
   // Хранилище кодов верификации (в реальном приложении лучше использовать базу данных)
   static final Map<String, VerificationCode> _verificationCodes = {};
+  // Хранилище кодов восстановления пароля
+  static final Map<String, VerificationCode> _passwordResetCodes = {};
   
   /// Генерация случайного 6-значного кода
   static String _generateCode() {
@@ -152,6 +154,122 @@ class EmailService {
     final now = DateTime.now();
     final difference = now.difference(code.createdAt);
     return difference.inMinutes <= 10;
+  }
+
+  /// Отправка кода восстановления пароля на email
+  static Future<EmailResult> sendPasswordResetCode({
+    required String email,
+  }) async {
+    try {
+      print('EmailService: Начинаем отправку кода восстановления на $email');
+      
+      // Генерируем новый код
+      final code = _generateCode();
+      print('EmailService: Сгенерирован код восстановления: $code');
+      
+      // Сохраняем код с временем создания
+      _passwordResetCodes[email] = VerificationCode(
+        code: code,
+        createdAt: DateTime.now(),
+      );
+      
+      // Настройка SMTP сервера
+      final smtpServer = SmtpServer(
+        EmailConfig.smtpHost,
+        port: EmailConfig.smtpPort,
+        ssl: EmailConfig.useSsl,
+        allowInsecure: EmailConfig.allowInsecure,
+        username: EmailConfig.senderEmail,
+        password: EmailConfig.senderPassword,
+      );
+      
+      // Создание письма
+      final message = Message()
+        ..from = Address(EmailConfig.senderEmail, EmailConfig.senderName)
+        ..recipients.add(email)
+        ..subject = EmailConfig.passwordResetSubject
+        ..html = EmailConfig.passwordResetBody(code)
+        ..text = EmailConfig.passwordResetBodyPlain(code);
+      
+      // Отправка письма
+      print('EmailService: Отправляем письмо восстановления...');
+      await send(message, smtpServer);
+      print('EmailService: Письмо восстановления успешно отправлено');
+      
+      return EmailResult(
+        success: true,
+        message: 'Код восстановления отправлен на $email',
+      );
+    } catch (e) {
+      print('EmailService: Ошибка отправки email восстановления: $e');
+      return EmailResult(
+        success: false,
+        message: 'Ошибка отправки email: ${e.toString()}',
+      );
+    }
+  }
+
+  /// Проверка кода восстановления пароля
+  static EmailResult verifyPasswordResetCode({
+    required String email,
+    required String code,
+  }) {
+    try {
+      final storedCode = _passwordResetCodes[email];
+      
+      if (storedCode == null) {
+        return EmailResult(
+          success: false,
+          message: 'Код восстановления не найден. Запросите новый код',
+        );
+      }
+      
+      // Проверка срока действия (10 минут)
+      final now = DateTime.now();
+      final difference = now.difference(storedCode.createdAt);
+      
+      if (difference.inMinutes > 10) {
+        _passwordResetCodes.remove(email);
+        return EmailResult(
+          success: false,
+          message: 'Код восстановления истек. Запросите новый код',
+        );
+      }
+      
+      // Проверка самого кода
+      if (storedCode.code != code) {
+        storedCode.attempts++;
+        
+        if (storedCode.attempts >= 5) {
+          _passwordResetCodes.remove(email);
+          return EmailResult(
+            success: false,
+            message: 'Превышено количество попыток. Запросите новый код',
+          );
+        }
+        
+        return EmailResult(
+          success: false,
+          message: 'Неверный код. Осталось попыток: ${5 - storedCode.attempts}',
+        );
+      }
+      
+      // Код верный - оставляем его для сброса пароля
+      return EmailResult(
+        success: true,
+        message: 'Код подтвержден',
+      );
+    } catch (e) {
+      return EmailResult(
+        success: false,
+        message: 'Ошибка проверки кода: ${e.toString()}',
+      );
+    }
+  }
+
+  /// Удаление кода восстановления после успешного сброса пароля
+  static void removePasswordResetCode(String email) {
+    _passwordResetCodes.remove(email);
   }
 }
 

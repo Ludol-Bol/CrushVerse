@@ -185,7 +185,16 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
               // Кнопка подтверждения
               ElevatedButton(
                 onPressed: _isLoading ? null : _verifyCode,
-                style: AppButtonStyles.elevated,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.buttonBackground,
+                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                  disabledBackgroundColor: AppColors.buttonBackground,
+                  disabledForegroundColor: Theme.of(context).colorScheme.onPrimary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                ),
                 child: _isLoading
                     ? const SizedBox(
                         height: 20,
@@ -196,7 +205,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                               AlwaysStoppedAnimation<Color>(Colors.white),
                         ),
                       )
-                    : const Text('Подтвердить'),
+                    : const Text('ПОДТВЕРДИТЬ', style: AppTextStyles.bodyText1),
               ),
               const SizedBox(height: 24),
 
